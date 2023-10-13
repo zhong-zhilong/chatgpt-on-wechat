@@ -104,7 +104,7 @@ def qrCallback(uuid, status, qrcode):
 def doJob():
     print('============================= doJob!')
     global timer
-    timer = threading.Timer(5, doJob)
+    timer = threading.Timer(60, doJob)
     timer.start()
 
 @singleton
