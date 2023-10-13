@@ -181,9 +181,10 @@ class ChatChannel(Channel):
                 file_path = context.content
                 wav_path = os.path.splitext(file_path)[0] + ".wav"
                 try:
-                    logger.info(file_path)
+                    logger.info('转换文件：' + file_path)
                     any_to_wav(file_path, wav_path)
                 except Exception as e:  # 转换失败，直接使用mp3，对于某些api，mp3也可以识别
+                    logger.warning("any_to_wav 转换失败!")             
                     logger.warning("[WX]any to wav error, use raw path. " + str(e))
                     wav_path = file_path
                 # 语音识别

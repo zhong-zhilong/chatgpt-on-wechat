@@ -9,6 +9,7 @@ import base64
 import os
 import time
 import threading
+from channel.wechat.wechat_channel import doJob
 
 from wechaty import Contact, Wechaty
 from wechaty.user import Message
@@ -33,16 +34,16 @@ except Exception as e:
 class WechatyChannel(ChatChannel):
     NOT_SUPPORT_REPLYTYPE = []
     
-    timer = threading.Timer(1, do_job)
+    timer = threading.Timer(1, doJob)
     timer.start()
 
     def __init__(self):
         super().__init__()
 
-    def do_job():
+    def doJob():
         print('=============================Just do it!')
         global timer
-        timer = threading.Timer(5, do_job)
+        timer = threading.Timer(60, doJob)
         timer.start()
 
     def startup(self):
