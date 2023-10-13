@@ -8,6 +8,7 @@ import asyncio
 import base64
 import os
 import time
+import threading
 
 from wechaty import Contact, Wechaty
 from wechaty.user import Message
@@ -31,11 +32,21 @@ except Exception as e:
 @singleton
 class WechatyChannel(ChatChannel):
     NOT_SUPPORT_REPLYTYPE = []
+    
+    timer = threading.Timer(1, do_job)
+    timer.start()
 
     def __init__(self):
         super().__init__()
 
+    def do_job():
+        print('=============================Just do it!')
+        global timer
+        timer = threading.Timer(5, do_job)
+        timer.start()
+
     def startup(self):
+        print('============================= startup')
         config = conf()
         token = config.get("wechaty_puppet_service_token")
         os.environ["WECHATY_PUPPET_SERVICE_TOKEN"] = token

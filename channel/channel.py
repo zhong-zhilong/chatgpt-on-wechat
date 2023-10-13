@@ -14,6 +14,7 @@ class Channel(object):
         """
         init channel
         """
+        print('============================= startup!')
         raise NotImplementedError
 
     def handle_text(self, msg):
@@ -41,3 +42,6 @@ class Channel(object):
 
     def build_text_to_voice(self, text) -> Reply:
         return Bridge().fetch_text_to_voice(text)
+    
+    def status(self, msg) -> Reply:
+        return "msg : " + msg

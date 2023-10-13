@@ -59,6 +59,7 @@ class BaiduVoice(Voice):
             logger.warn("BaiduVoice init failed: %s, ignore " % e)
 
     def voiceToText(self, voice_file):
+        logger.info("百度语音识别开始 voiceToText")
         # 识别本地文件
         logger.debug("[Baidu] voice file name={}".format(voice_file))
         pcm = get_pcm_from_wav(voice_file)

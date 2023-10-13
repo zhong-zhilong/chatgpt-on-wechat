@@ -101,6 +101,11 @@ def qrCallback(uuid, status, qrcode):
         qr.make(fit=True)
         qr.print_ascii(invert=True)
 
+def doJob():
+    print('============================= doJob!')
+    global timer
+    timer = threading.Timer(5, doJob)
+    timer.start()
 
 @singleton
 class WechatChannel(ChatChannel):
@@ -111,6 +116,10 @@ class WechatChannel(ChatChannel):
         self.receivedMsgs = ExpiredDict(60 * 60)
 
     def startup(self):
+        print('============================= WechatChannel startup')
+        timer = threading.Timer(1, doJob)
+        timer.start()
+
         itchat.instance.receivingRetryCount = 600  # 修改断线超时时间
         # login by scan QRCode
         hotReload = conf().get("hot_reload", False)
