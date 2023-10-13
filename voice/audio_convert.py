@@ -58,16 +58,16 @@ def any_to_wav(any_path, wav_path):
     """
     把任意格式转成wav文件
     """
-    logger.Info("any_to_wav 把任意格式转成wav文件")
+    logger.info("any_to_wav 把任意格式转成wav文件")
     if any_path.endswith(".wav"):
         shutil.copy2(any_path, wav_path)
         return
     if any_path.endswith(".sil") or any_path.endswith(".silk") or any_path.endswith(".slk"):
         return sil_to_wav(any_path, wav_path)
     
-    logger.Info("调用 AudioSegment.from_file")
+    logger.info("调用 AudioSegment.from_file")
     audio = AudioSegment.from_file(any_path)
-    logger.Info("调用 audio.export")
+    logger.info("调用 audio.export")
     audio.export(wav_path, format="wav")
 
 
